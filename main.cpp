@@ -1,61 +1,35 @@
-
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include <windows.h>
+#include "Moduls_For_Project/Graphic.hpp"
+#include "Moduls_For_Project/Intersect.hpp"
+#include "Moduls_For_Project/Consts.hpp"
+#include "Moduls_For_Project/Include.hpp"
 
 using namespace sf;
 
-RenderWindow window (VideoMode(500, 500), "Arkanoid");
-
-
-bool intersect(HWND h)
-{
-    Event event;
-
-    if (h != window.getSystemHandle())
-    {
-        if (Mouse::isButtonPressed(Mouse::Left))
-        {
-
-        }
-        else
-        {
-            FloatRect rect;
-            RECT rect1 = {0};
-            GetWindowRect(h, &rect1);
-            rect.left = rect1.left;
-            rect.top = rect1.top;
-            rect.width = rect1.right-rect1.left;
-            rect.height = rect1.bottom-rect1.top;
-            FloatRect Window_Rect;
-            Window_Rect.left = window.getPosition().x;
-            Window_Rect.top = window.getPosition().y;
-            Window_Rect.height = window.getSize().y;
-            Window_Rect.width = window.getSize().x;
-
-            if (rect != Window_Rect && Window_Rect.intersects(rect))
-            {
-                MoveWindow(h, window.getPosition().x, window.getPosition().y, 150, 150, true);
-
-            }
-        }
-
-    }
-
-
-}
 
 BOOL CALLBACK fnEnumWindowProc(HWND hwnd, LPARAM lParam){
 
-  intersect(hwnd);
+   if (isIntersect(window, hwnd))
+   {
+       double a = Include_Window_In_Sector(hwnd);
+       if (a != -1)
+       {
+           std::cout << hwnd << " : " << a << "\n";
+            MoveWindow(hwnd, window.getPosition().x, window.getPosition().y, 150, 150, true);
+       }
+   }
 
   return TRUE;
 }
 
 
+
 int main()
 {
-    window.alert("hello, world");
+Sleep(5000);
+window.setPosition(Vector2i(100, 100));
+Initialize_NotAcces_Array();
+
 while (window.isOpen())
     {
         Event event;
@@ -65,12 +39,17 @@ while (window.isOpen())
             window.close();
     }
 
+
+
+    window.clear(Color::White);
+
+    Draw(window, Wall, line1, line2, line3, line4);
+
     EnumWindows(fnEnumWindowProc, 0);
 
-    window.clear(Color::Magenta);
     window.display();
-    }
 
+    }
 
     return 0;
 }
