@@ -12,11 +12,32 @@ BOOL CALLBACK fnEnumWindowProc(HWND hwnd, LPARAM lParam){
    if (isIntersect(window, hwnd))
    {
        double a = Include_Window_In_Sector(hwnd);
-       if (a != -1)
+       if (a == 0)
        {
            std::cout << hwnd << " : " << a << "\n";
             MoveWindow(hwnd, window.getPosition().x, window.getPosition().y, 150, 150, true);
        }
+       else if (a == 1)
+       {
+           std::cout << hwnd << " : " << a << "\n";
+            MoveWindow(hwnd, 0, 0, 250, 250, true);
+       }
+       else if (a == 2)
+       {
+           std::cout << hwnd << " : " << a << "\n";
+            MoveWindow(hwnd, 500, 500, 150, 250, true);
+       }
+       else if (a == 3)
+       {
+           std::cout << hwnd << " : " << a << "\n";
+            MoveWindow(hwnd, 0, 500, 250, 150, true);
+       }
+        else if (a == 4)
+       {
+           std::cout << hwnd << " : " << a << "\n";
+            MoveWindow(hwnd, 0, 100, 50, 50, true);
+       }
+
    }
 
   return TRUE;

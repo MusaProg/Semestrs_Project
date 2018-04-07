@@ -8,7 +8,10 @@ using namespace sf;
 
 const double k = 2; /// показывает, во сколько раз размеры стены(дальней)
 /// меньше размера главного окна
-RenderWindow window (VideoMode(500, 500), "Arkanoid");
+const double ex = 11;
+const double ey = 31;
+
+RenderWindow window (VideoMode(600, 600), "Arkanoid");
 RectangleShape Wall (Vector2f(window.getSize().x/k, window.getSize().y/k));
 
 VertexArray line1 (sf::Lines, 2);
