@@ -9,7 +9,7 @@ double abs(double a)
 
 int main()
 {
-	cout << "Hello, world1!";
+	cout << "Hello, world2!";
 	return 0;
 }
 
