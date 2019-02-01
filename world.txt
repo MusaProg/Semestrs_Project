@@ -17,3 +17,8 @@ float s()
 {
 	return 0.2;
 }
+
+void say()
+{
+	cout << "Hi!\n";
+}
