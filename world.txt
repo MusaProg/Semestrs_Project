@@ -12,3 +12,8 @@ int main()
 	cout << "Hello, world1!";
 	return 0;
 }
+
+float s()
+{
+	return 0.2;
+}
