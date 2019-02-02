@@ -47,7 +47,7 @@ BOOL CALLBACK fnEnumWindowProc(HWND hwnd, LPARAM lParam){
 
 int main()
 {
-Sleep(1000);
+Sleep(2000);
 window.setPosition(Vector2i(100, 100));
 Initialize_NotAcces_Array();
 
